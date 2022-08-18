@@ -3,14 +3,13 @@ import TopBar from "./_TopBar";
 import _card from "./_card";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { event } from "jquery";
 import PopUp from "./PopUp";
 import _cardLoader from "./_cardLoader";
 
 const AllContact = () => {
   const [users, setUsers] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [input, setInput] = useState(null);
+  const [input, setInput] = useState("");
   console.log(input);
 
   var offSet = 12;
@@ -47,7 +46,6 @@ const AllContact = () => {
     }
   };
   const [userid, setuserid] = useState(null);
-  const [userIndex, setUserIndex] = useState(null);
   const [fusers, setFUsers] = useState({});
   useEffect(() => {
     axios.get("https://dummyjson.com/users/" + userid).then((data) => {
@@ -59,35 +57,34 @@ const AllContact = () => {
     <>
       <TopBar title="All Contact" setInput={setInput} input={input} />
 
-      <PopUp userid={userid} data={fusers} userIndex={userIndex} />
+      <PopUp userid={userid} data={fusers} />
       {loader ? (
         <div
           className="container mt-4 grid-wrepper"
           style={{ marginBottom: "10rem" }}
         >
-          {users.map((item, i) => {
-            if (even == true) {
-              if ((i + 1) % 2 == 0) {
-                return (
-                  <_card
-                    item={item}
-                    index={i}
-                    setuserid={setuserid}
-                    setUserIndex={setUserIndex}
-                  />
-                );
+          {users
+            .filter((value) => {
+              if (input === "") {
+                return value;
+              } else if (
+                value.firstName.toLowerCase().includes(input.toLowerCase()) ||
+                value.lastName.toLowerCase().includes(input.toLowerCase()) ||
+                value.maidenName.toLowerCase().includes(input.toLowerCase()) ||
+                value.phone.includes(input)
+              ) {
+                return value;
               }
-            } else {
-              return (
-                <_card
-                  item={item}
-                  index={i}
-                  setuserid={setuserid}
-                  setUserIndex={setUserIndex}
-                />
-              );
-            }
-          })}
+            })
+            .map((item, i) => {
+              if (even == true) {
+                if ((i + 1) % 2 == 0) {
+                  return <_card item={item} index={i} setuserid={setuserid} />;
+                }
+              } else {
+                return <_card item={item} index={i} setuserid={setuserid} />;
+              }
+            })}
         </div>
       ) : (
         <_cardLoader />
@@ -103,7 +100,7 @@ const AllContact = () => {
               id="flexCheckDefault"
               onChange={(event) => handleChange(event)}
             />
-            <label className="form-check-label" for="flexCheckDefault">
+            <label className="form-check-label" htmlFor="flexCheckDefault">
               Only even
             </label>
           </div>

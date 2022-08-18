@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import $ from "jquery";
 
 const PopUp = (props) => {
   return (
