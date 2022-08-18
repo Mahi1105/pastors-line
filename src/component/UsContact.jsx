@@ -9,7 +9,7 @@ import _cardLoader from "./_cardLoader";
 const UsContact = () => {
   const [users, setUsers] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [input, setInput] = useState(null);
+  const [input, setInput] = useState("");
   console.log(input);
 
   var offSet = 12;
@@ -65,15 +65,28 @@ const UsContact = () => {
           className="container mt-4 grid-wrepper"
           style={{ marginBottom: "10rem" }}
         >
-          {users.map((item, i) => {
-            if (even == true) {
-              if ((i + 1) % 2 == 0) {
+          {users
+            .filter((value) => {
+              if (input === "") {
+                return value;
+              } else if (
+                value.firstName.toLowerCase().includes(input.toLowerCase()) ||
+                value.lastName.toLowerCase().includes(input.toLowerCase()) ||
+                value.maidenName.toLowerCase().includes(input.toLowerCase()) ||
+                value.phone.includes(input)
+              ) {
+                return value;
+              }
+            })
+            .map((item, i) => {
+              if (even == true) {
+                if ((i + 1) % 2 == 0) {
+                  return <_card item={item} index={i} setuserid={setuserid} />;
+                }
+              } else {
                 return <_card item={item} index={i} setuserid={setuserid} />;
               }
-            } else {
-              return <_card item={item} index={i} setuserid={setuserid} />;
-            }
-          })}
+            })}
         </div>
       ) : (
         <_cardLoader />
@@ -89,7 +102,7 @@ const UsContact = () => {
               id="flexCheckDefault"
               onChange={(event) => handleChange(event)}
             />
-            <label className="form-check-label" for="flexCheckDefault">
+            <label className="form-check-label" htmlFor="flexCheckDefault">
               Only even
             </label>
           </div>

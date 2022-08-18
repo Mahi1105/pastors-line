@@ -5,42 +5,42 @@ const _cardLoader = () => {
     <>
       <div className="grid-wrepper container" style={{ width: "100%" }}>
         <div
-          class="card mx-auto mt-4"
+          className="card mx-auto mt-4"
           style={{ maxWidth: "20rem", minWidth: "100%" }}
         >
-          <div class="card-body">
-            <div class="text-placeholder placeholder w-50"></div>
-            <div class="text-placeholder placeholder w-75"></div>
+          <div className="card-body">
+            <div className="text-placeholder placeholder w-50"></div>
+            <div className="text-placeholder placeholder w-75"></div>
           </div>
         </div>
         {/* card */}
         <div
-          class="card mx-auto mt-4"
+          className="card mx-auto mt-4"
           style={{ maxWidth: "20rem", minWidth: "100%" }}
         >
-          <div class="card-body">
-            <div class="text-placeholder placeholder w-50"></div>
-            <div class="text-placeholder placeholder w-75"></div>
+          <div className="card-body">
+            <div className="text-placeholder placeholder w-50"></div>
+            <div className="text-placeholder placeholder w-75"></div>
           </div>
         </div>
         {/* card */}
         <div
-          class="card mx-auto mt-4"
+          className="card mx-auto mt-4"
           style={{ maxWidth: "20rem", minWidth: "100%" }}
         >
-          <div class="card-body">
-            <div class="text-placeholder placeholder w-50"></div>
-            <div class="text-placeholder placeholder w-75"></div>
+          <div className="card-body">
+            <div className="text-placeholder placeholder w-50"></div>
+            <div className="text-placeholder placeholder w-75"></div>
           </div>
         </div>
         {/* card */}
         <div
-          class="card mx-auto mt-4"
+          className="card mx-auto mt-4"
           style={{ maxWidth: "20rem", minWidth: "100%" }}
         >
-          <div class="card-body">
-            <div class="text-placeholder placeholder w-50"></div>
-            <div class="text-placeholder placeholder w-75"></div>
+          <div className="card-body">
+            <div className="text-placeholder placeholder w-50"></div>
+            <div className="text-placeholder placeholder w-75"></div>
           </div>
         </div>
         {/* card */}
